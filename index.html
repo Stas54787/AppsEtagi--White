@@ -315,10 +315,19 @@ header h1 {
 .cards-grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  max-width: 1200px;
+  gap: 1.5rem;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 1rem;
+}
+
+/* Десктопная версия - 3 колонки на больших экранах */
+@media (min-width: 1025px) {
+  .cards-grid-container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+  }
 }
 
 /* Новые адаптивные стили для мобильных устройств */
