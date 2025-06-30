@@ -673,6 +673,24 @@ header h1,
 .logo-container {
   margin-bottom: 1rem;
 }
+@media (max-width: 768px) {
+  .header-main-custom {
+    margin-bottom: 1.5rem !important;
+  }
+}
+.header-main-custom {
+  margin-bottom: 10rem !important; /* По умолчанию на десктопе больше */
+}
+
+@media (max-width: 1024px) {
+  .header-main-custom {
+    margin-bottom: 2rem !important; /* На планшетах и мобильных меньше */
+  }
+}
+  .header-main-custom {
+    margin-bottom: 4rem !important; /* На мобильных еще меньше */
+  }
+}
 </style>
 </head>
 
@@ -684,7 +702,8 @@ header h1,
   <div id="mainPage" class="min-h-screen flex flex-col" style="box-shadow: 0 16px 32px -8px rgba(252,64,58,0.15);">
 
     <!-- Хедер -->
-    <header class="py-4 md:py-6 px-4 bg-white shadow-md mb-32">
+   <header class="py-4 md:py-6 px-4 bg-white shadow-md mb-32 header-main-custom">
+
 
   <div class="max-w-7xl mx-auto flex items-center justify-start">
     <div class="logo-container">
