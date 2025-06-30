@@ -190,7 +190,7 @@ body, html {
 .analytics-back-btn:hover {
   background: #d63531 !important;
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 24px rgba(252, 64, 58, 0.3);
+  box_shadow: 0 8px 24px rgba(252, 64, 58, 0.3);
 }
 
 /* Логотип с эффектом как у карточек */
@@ -202,7 +202,7 @@ body, html {
 }
 
 .logo-image {
-  max-height: 64px;
+  max-height: 48px;
   width: auto;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -235,7 +235,7 @@ body, html {
 .analytics-bg {
   background: linear-gradient(135deg, #1a1a1d 0%, #2d2d30 50%, #1a1a1d 100%);
   background-size: 200% 200%;
-  animation: darkGradientMove 10s ease-in-out infinite;
+  animation: darkGradientMove 10s ease-in-out infinite 사람들은 0% 50%;
 }
 
 @keyframes darkGradientMove {
@@ -434,7 +434,7 @@ header h1 {
   
   /* Логотип на мобильных */
   .logo-image {
-    max-height: 80px !important;
+    max-height: 40px !important;
   }
   
   /* Больше пространства между хедером и карточками */
@@ -496,6 +496,11 @@ header h1 {
   #analyticsIcon {
     width: 28px !important;
     height: 28px !important;
+  }
+  
+  /* Логотип на планшетах */
+  .logo-image {
+    max-height: 44px !important;
   }
 }
 
@@ -570,7 +575,7 @@ header h1 {
   
   /* Логотип в хедере */
   .logo-image {
-    max-height: 60px !important;
+    max-height: 36px !important;
   }
   
   /* Логотип на странице аналитики */
@@ -662,6 +667,12 @@ header h1,
     transition: transform 0.1s ease;
   }
 }
+
+
+
+.logo-container {
+  margin-bottom: 1rem;
+}
 </style>
 </head>
 
@@ -670,22 +681,20 @@ header h1,
   <div class="bg-particles" id="particles"></div>
 
   <!-- Главная страница -->
-  <div id="mainPage" class="min-h-screen flex flex-col">
+  <div id="mainPage" class="min-h-screen flex flex-col" style="box-shadow: 0 16px 32px -8px rgba(252,64,58,0.15);">
+
     <!-- Хедер -->
-    <header class="relative py-4 md:py-6 px-4">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col items-center text-center">
-          <div class="logo-container mb-4">
-            <img src="https://i.postimg.cc/xTfKTV6w/image.png" alt="Логотип" class="logo-image">
-          </div>
-          <div>
-            <h1 class="text-2xl md:text-3xl lg:text-4xl font-extrabold">
-              Инструментарий руководителя
-            </h1>
-          </div>
-        </div>
-      </div>
-    </header>
+    <header class="py-4 md:py-6 px-4 bg-white shadow-md mb-32">
+
+  <div class="max-w-7xl mx-auto flex items-center justify-start">
+    <div class="logo-container">
+      <img src="https://i.postimg.cc/xTfKTV6w/image.png"
+           alt="Логотип"
+           class="logo-image w-auto object-contain" />
+    </div>
+  </div>
+</header>
+
 
     <!-- Основной контент -->
     <main class="flex-1 px-4">
@@ -693,7 +702,7 @@ header h1,
         <!-- Заголовок секции -->
         <div class="text-center mb-8 md:mb-16">
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            <span class="animated-title">Ключевые инструменты</span>
+            <span class="animated-title">Ключевые инструменты руководителя</span>
           </h2>
           <p class="text-lg md:text-xl subtitle-text max-w-2xl mx-auto px-4">
             Современные решения для эффективного управления продажами и командой
