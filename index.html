@@ -749,4 +749,135 @@ header h1,
 
     <!-- Контент страницы аналитики -->
     <main class="flex-1 px-4 py-8">
-      <div class
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <h2 style="color: #130909;" class="text-xl font-medium">Выберите раздел</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-3xl mx-auto px-2 md:px-0">
+          <button class="analytics-button text-sm md:text-base">Метрики эффективности</button>
+          <button class="analytics-button text-sm md:text-base">Автоматизация отчётности</button>
+          <button class="analytics-button text-sm md:text-base">Воронка продаж</button>
+          <button class="analytics-button text-sm md:text-base">Дашборд BI</button>
+          <button class="analytics-button text-sm md:text-base">A/B-тесты</button>
+          <button class="analytics-button text-sm md:text-base">Оптимизация процессов</button>
+        </div>
+      </div>
+    </main>
+
+    <footer class="py-6 text-center">
+      <p style="color: #130909;" class="text-sm opacity-75">© 2025 Станислав Сизько</p>
+    </footer>
+  </div>
+
+  <script>
+    // Создание анимированных частиц (адаптивно)
+    function createParticles() {
+      const container = document.getElementById('particles');
+      // Меньше частиц на мобильных устройствах
+      const particleCount = window.innerWidth < 768 ? 15 : 30;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+        
+        // Различные размеры частиц (меньше на мобильных)
+        const baseSize = window.innerWidth < 768 ? 2 : 3;
+        const size = Math.random() * baseSize + 2;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        
+        container.appendChild(particle);
+      }
+    }
+
+    // Функции навигации
+    function showAnalytics(title) {
+      document.getElementById('mainPage').style.display = 'none';
+      document.getElementById('analyticsPage').style.display = 'flex';
+      
+      // Обновляем заголовок
+      document.getElementById('analyticsTitleText').textContent = title;
+      
+      // Словарь соответствий заголовков и иконок
+      const iconMap = {
+        'Аналитика и оптимизация продаж': 'https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg',
+        'Файлы для риелторов': 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
+        'Командное лидерство': 'https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg',
+        'HR Аналитика': 'https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg',
+        'Отдел адаптации': 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
+        'Департамент управления': 'https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg',
+        'Отдел ипотеки': 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
+        'Юридический департамент': 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
+        'Департамент информации': 'https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg'
+      };
+      
+      // Устанавливаем соответствующую иконку
+      const iconElement = document.getElementById('analyticsIcon');
+      if (iconMap[title]) {
+        iconElement.src = iconMap[title];
+        iconElement.alt = title;
+        iconElement.style.display = 'block';
+      } else {
+        iconElement.style.display = 'none';
+      }
+    }
+
+    function showMain() {
+      document.getElementById('mainPage').style.display = 'flex';
+      document.getElementById('analyticsPage').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', function() {
+      createParticles();
+      
+      // Добавляем обработчики для карточек
+      const cards = document.querySelectorAll('.modern-card');
+      cards.forEach((card, index) => {
+        // Клик по карточке
+        card.addEventListener('click', function(e) {
+          // Получаем заголовок из h3
+          const title = this.querySelector('h3').textContent;
+          showAnalytics(title);
+        });
+      });
+      
+      // Параллакс эффект для частиц при движении мыши (только для десктопа)
+      if (window.innerWidth > 768) {
+        document.addEventListener('mousemove', function(e) {
+          const particles = document.querySelectorAll('.particle');
+          const x = e.clientX / window.innerWidth;
+          const y = e.clientY / window.innerHeight;
+          
+          particles.forEach((particle, index) => {
+            const speed = (index % 3 + 1) * 0.5;
+            particle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+          });
+        });
+      }
+      
+      // Пересоздание частиц при изменении размера экрана
+      window.addEventListener('resize', function() {
+        const container = document.getElementById('particles');
+        container.innerHTML = '';
+        createParticles();
+      });
+    });
+
+    // Добавляем интерактивность для analytics кнопок
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('analytics-button')) {
+        e.target.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          e.target.style.transform = '';
+        }, 200);
+      }
+    });
+  </script>
+</body>
+</html>
