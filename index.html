@@ -313,25 +313,11 @@ header h1 {
 
 /* Новые адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
-  /* Контейнер для мобильной сетки */
-  .mobile-grid-container {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    grid-template-columns: none !important;
-    gap: 0 !important;
-  }
-  
-  /* Сетка карточек - строго по центру */
-  .mobile-grid {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 1rem !important;
+  /* Центрирование сетки карточек */
+  .mobile-cards-grid {
     max-width: 320px !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0 auto !important;
+    justify-self: center !important;
   }
   
   .modern-card {
