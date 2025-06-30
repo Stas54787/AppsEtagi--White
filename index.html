@@ -313,11 +313,13 @@ header h1 {
 
 /* Новые адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
-  /* Центрирование сетки карточек */
-  .mobile-cards-grid {
+  /* Центрирование контейнера с принудительным переопределением */
+  .mobile-cards-center {
     max-width: 320px !important;
-    margin: 0 auto !important;
-    justify-self: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
   
   .modern-card {
