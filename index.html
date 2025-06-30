@@ -360,11 +360,13 @@ header h1 {
     border-radius: 6px;
   }
   
-  /* Сетка 3x3 для мобильных с одинаковыми отступами */
+  /* Сетка 3x3 для мобильных с центрированием */
   .mobile-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem 1rem; /* одинаковый отступ по вертикали и горизонтали */
+    max-width: 350px; /* максимальная ширина для центрирования */
+    margin: 0 auto; /* центрирование блока */
     padding: 0 1rem;
   }
   
