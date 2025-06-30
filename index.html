@@ -313,6 +313,27 @@ header h1 {
 
 /* Новые адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
+  /* Контейнер для мобильной сетки */
+  .mobile-grid-container {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    grid-template-columns: none !important;
+    gap: 0 !important;
+  }
+  
+  /* Сетка карточек - строго по центру */
+  .mobile-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 1rem !important;
+    max-width: 320px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
   .modern-card {
     padding: 1rem;
     border-radius: 14px;
@@ -358,16 +379,6 @@ header h1 {
     width: 28px !important;
     height: 28px !important;
     border-radius: 6px;
-  }
-  
-  /* Сетка 3x3 для мобильных с центрированием */
-  .mobile-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem 1rem; /* одинаковый отступ по вертикали и горизонтали */
-    max-width: 350px; /* максимальная ширина для центрирования */
-    margin: 0 auto; /* центрирование блока */
-    padding: 0 1rem;
   }
   
   /* Адаптация заголовка */
@@ -672,77 +683,80 @@ header h1,
         </div>
 
         <!-- Сетка карточек - адаптивная: 3 колонки на мобильных, больше на десктопе -->
-        <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-16 mobile-grid md:px-0">
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg" alt="Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+        <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-16 px-4 md:px-0 mobile-grid-container">
+          <div class="mobile-grid">
+          <div class="mobile-grid">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg" alt="Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Аналитика продаж</h3>
+              <p>Системный анализ и автоматизация процессов продаж</p>
             </div>
-            <h3>Аналитика продаж</h3>
-            <p>Системный анализ и автоматизация процессов продаж</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg" alt="Файлы" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg" alt="Файлы" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Файлы риелторов</h3>
+              <p>Инструменты и шаблоны для эффективной работы</p>
             </div>
-            <h3>Файлы риелторов</h3>
-            <p>Инструменты и шаблоны для эффективной работы</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg" alt="Лидерство" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg" alt="Лидерство" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Лидерство команд</h3>
+              <p>Формирование команд и развитие талантов</p>
             </div>
-            <h3>Лидерство команд</h3>
-            <p>Формирование команд и развитие талантов</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg" alt="HR Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg" alt="HR Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>HR Аналитика</h3>
+              <p>Метрики персонала и глубокая аналитика</p>
             </div>
-            <h3>HR Аналитика</h3>
-            <p>Метрики персонала и глубокая аналитика</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg" alt="Адаптация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg" alt="Адаптация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Отдел адаптации</h3>
+              <p>Адаптация и интеграция новых сотрудников</p>
             </div>
-            <h3>Отдел адаптации</h3>
-            <p>Адаптация и интеграция новых сотрудников</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg" alt="Управление" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg" alt="Управление" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Управление</h3>
+              <p>Организация и контроль всех процессов</p>
             </div>
-            <h3>Управление</h3>
-            <p>Организация и контроль всех процессов</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg" alt="Ипотека" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg" alt="Ипотека" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Отдел ипотеки</h3>
+              <p>Решения по ипотеке и кредитованию</p>
             </div>
-            <h3>Отдел ипотеки</h3>
-            <p>Решения по ипотеке и кредитованию</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg" alt="Юридический" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg" alt="Юридический" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Юридический отдел</h3>
+              <p>Правовое сопровождение и экспертиза</p>
             </div>
-            <h3>Юридический отдел</h3>
-            <p>Правовое сопровождение и экспертиза</p>
-          </div>
 
-          <div class="modern-card">
-            <div class="gradient-icon">
-              <img src="https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg" alt="Информация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+            <div class="modern-card">
+              <div class="gradient-icon">
+                <img src="https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg" alt="Информация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
+              </div>
+              <h3>Информация</h3>
+              <p>Поддержка и управление корпоративными знаниями</p>
             </div>
-            <h3>Информация</h3>
-            <p>Поддержка и управление корпоративными знаниями</p>
           </div>
         </div>
       </div>
