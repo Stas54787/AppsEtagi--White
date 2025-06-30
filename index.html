@@ -311,19 +311,126 @@ header h1 {
   background: linear-gradient(135deg, #d63531, #FC403A);
 }
 
-/* Медиа запросы для мобильных устройств и планшетов */
+/* Новые адаптивные стили для мобильных устройств */
 @media (max-width: 768px) {
   .modern-card {
-    padding: 1.5rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .modern-card h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  
+  .modern-card p {
+    font-size: 0.65rem;
+    line-height: 1.4;
+    opacity: 0.9;
   }
   
   .gradient-icon {
-    width: 50px;
-    height: 50px;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    align-self: center;
   }
   
-  .gradient-icon span {
-    font-size: 20px;
+  .gradient-icon img {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 6px;
+  }
+  
+  /* Сетка 3x3 для мобильных */
+  .mobile-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  /* Адаптация заголовка */
+  header h1 {
+    font-size: 1.1rem !important;
+  }
+  
+  /* Главный заголовок */
+  .animated-title {
+    font-size: 1.8rem !important;
+  }
+  
+  /* Подзаголовок */
+  .subtitle-text {
+    font-size: 0.85rem !important;
+    padding: 0 1rem;
+  }
+  
+  /* Кнопка "На главную" */
+  .analytics-back-btn {
+    font-size: 0.75rem !important;
+    padding: 8px 12px !important;
+  }
+  
+  /* Заголовок страницы аналитики */
+  #analyticsTitle {
+    font-size: 1rem !important;
+    gap: 6px !important;
+  }
+  
+  #analyticsIcon {
+    width: 24px !important;
+    height: 24px !important;
+  }
+  
+  /* Отступы */
+  .mb-16 {
+    margin-bottom: 2rem !important;
+  }
+  
+  /* Частицы - меньше на мобильных */
+  .particle {
+    width: 2px !important;
+    height: 2px !important;
+  }
+  
+  /* Логотип на мобильных */
+  .logo-image {
+    max-height: 40px !important;
+  }
+}
+
+/* Планшеты - тоже 3 в ряд, но с большими карточками */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .modern-card {
+    padding: 1.2rem;
+    min-height: 180px;
+  }
+  
+  .modern-card h3 {
+    font-size: 1rem;
+  }
+  
+  .modern-card p {
+    font-size: 0.8rem;
+  }
+  
+  .gradient-icon {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .gradient-icon img {
+    width: 40px !important;
+    height: 40px !important;
   }
   
   /* Адаптация заголовка */
@@ -336,132 +443,87 @@ header h1 {
     font-size: 2.5rem !important;
   }
   
-  /* Подзаголовок */
-  .subtitle-text {
-    font-size: 1rem !important;
-  }
-  
-  /* Кнопка "На главную" */
-  .analytics-back-btn {
-    font-size: 0.75rem !important;
-    padding: 8px 12px !important;
-  }
-  
   /* Заголовок страницы аналитики */
   #analyticsTitle {
-    font-size: 1.25rem !important;
-    gap: 8px !important;
-  }
-  
-  #analyticsIcon {
-    width: 32px !important;
-    height: 32px !important;
-  }
-  
-  /* Сетка карточек */
-  .grid {
-    gap: 1rem !important;
-  }
-  
-  /* Отступы */
-  .px-4 {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
-  }
-  
-  .mb-16 {
-    margin-bottom: 3rem !important;
-  }
-  
-  /* Частицы - меньше на мобильных */
-  .particle {
-    width: 2px !important;
-    height: 2px !important;
-  }
-}
-
-/* Планшеты */
-@media (min-width: 769px) and (max-width: 1024px) {
-  .modern-card {
-    padding: 1.75rem;
-  }
-  
-  .gradient-icon {
-    width: 55px;
-    height: 55px;
-  }
-  
-  /* Адаптация заголовка */
-  header h1 {
-    font-size: 2rem !important;
-  }
-  
-  /* Главный заголовок */
-  .animated-title {
-    font-size: 3.5rem !important;
-  }
-  
-  /* Заголовок страницы аналитики */
-  #analyticsTitle {
-    font-size: 1.5rem !important;
-  }
-  
-  #analyticsIcon {
-    width: 36px !important;
-    height: 36px !important;
-  }
-}
-
-/* Очень маленькие экраны */
-@media (max-width: 480px) {
-  .modern-card {
-    padding: 1rem;
-  }
-  
-  .gradient-icon {
-    width: 45px;
-    height: 45px;
-  }
-  
-  .gradient-icon img {
-    width: 45px !important;
-    height: 45px !important;
-  }
-  
-  header h1 {
-    font-size: 1.25rem !important;
-  }
-  
-  .animated-title {
-    font-size: 2rem !important;
-  }
-  
-  .subtitle-text {
-    font-size: 0.9rem !important;
-  }
-  
-  /* Кнопки аналитики */
-  .analytics-button {
-    padding: 12px 16px !important;
-    font-size: 14px !important;
-  }
-  
-  /* Заголовок с иконкой */
-  #analyticsTitle {
-    font-size: 1.1rem !important;
-    flex-direction: column !important;
-    gap: 4px !important;
-    text-align: center !important;
+    font-size: 1.2rem !important;
   }
   
   #analyticsIcon {
     width: 28px !important;
     height: 28px !important;
   }
+}
+
+/* Очень маленькие экраны (телефоны в портретной ориентации) */
+@media (max-width: 480px) {
+  .modern-card {
+    padding: 0.5rem;
+    min-height: 120px;
+    border-radius: 10px;
+  }
+  
+  .modern-card h3 {
+    font-size: 0.7rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .modern-card p {
+    font-size: 0.6rem;
+    line-height: 1.3;
+  }
+  
+  .gradient-icon {
+    width: 28px;
+    height: 28px;
+    margin-bottom: 0.3rem;
+  }
+  
+  .gradient-icon img {
+    width: 24px !important;
+    height: 24px !important;
+    border-radius: 4px;
+  }
+  
+  header h1 {
+    font-size: 0.9rem !important;
+  }
+  
+  .animated-title {
+    font-size: 1.5rem !important;
+  }
+  
+  .subtitle-text {
+    font-size: 0.75rem !important;
+  }
+  
+  /* Кнопки аналитики */
+  .analytics-button {
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+  }
+  
+  /* Заголовок с иконкой */
+  #analyticsTitle {
+    font-size: 0.9rem !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+    text-align: center !important;
+  }
+  
+  #analyticsIcon {
+    width: 20px !important;
+    height: 20px !important;
+  }
   
   /* Логотип в хедере */
   .logo-image {
-    max-height: 48px !important;
+    max-height: 32px !important;
+  }
+  
+  /* Мобильная сетка с еще меньшими отступами */
+  .mobile-grid {
+    gap: 0.3rem;
+    padding: 0 0.3rem;
   }
 }
 
@@ -533,23 +595,6 @@ header h1,
   padding: 1.5rem 1.5rem !important;
 }
 
-/* Для мобильных устройств и планшетов */
-@media (max-width: 768px) {
-  .modern-card,
-  .analytics-button {
-    padding: 1rem !important;
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .modern-card,
-  .analytics-button {
-    padding: 0.75rem !important;
-    font-size: 0.9rem;
-  }
-}
-
 /* Улучшения для тач-устройств */
 @media (hover: none) {
   .modern-card:hover,
@@ -603,8 +648,8 @@ header h1,
           </p>
         </div>
 
-        <!-- Сетка карточек -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-8 md:mb-16 px-2 md:px-0">
+        <!-- Сетка карточек - адаптивная: 3 колонки на мобильных, больше на десктопе -->
+        <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-6 lg:gap-8 mb-8 md:mb-16 mobile-grid md:px-0">
           <div class="modern-card">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg" alt="Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
@@ -704,135 +749,4 @@ header h1,
 
     <!-- Контент страницы аналитики -->
     <main class="flex-1 px-4 py-8">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-8">
-          <h2 style="color: #130909;" class="text-xl font-medium">Выберите раздел</h2>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 max-w-3xl mx-auto px-2 md:px-0">
-          <button class="analytics-button text-sm md:text-base">Метрики эффективности</button>
-          <button class="analytics-button text-sm md:text-base">Автоматизация отчётности</button>
-          <button class="analytics-button text-sm md:text-base">Воронка продаж</button>
-          <button class="analytics-button text-sm md:text-base">Дашборд BI</button>
-          <button class="analytics-button text-sm md:text-base">A/B-тесты</button>
-          <button class="analytics-button text-sm md:text-base">Оптимизация процессов</button>
-        </div>
-      </div>
-    </main>
-
-    <footer class="py-6 text-center">
-      <p style="color: #130909;" class="text-sm opacity-75">© 2025 Станислав Сизько</p>
-    </footer>
-  </div>
-
-  <script>
-    // Создание анимированных частиц (адаптивно)
-    function createParticles() {
-      const container = document.getElementById('particles');
-      // Меньше частиц на мобильных устройствах
-      const particleCount = window.innerWidth < 768 ? 15 : 30;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-        
-        // Различные размеры частиц (меньше на мобильных)
-        const baseSize = window.innerWidth < 768 ? 2 : 3;
-        const size = Math.random() * baseSize + 2;
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        
-        container.appendChild(particle);
-      }
-    }
-
-    // Функции навигации
-    function showAnalytics(title) {
-      document.getElementById('mainPage').style.display = 'none';
-      document.getElementById('analyticsPage').style.display = 'flex';
-      
-      // Обновляем заголовок
-      document.getElementById('analyticsTitleText').textContent = title;
-      
-      // Словарь соответствий заголовков и иконок
-      const iconMap = {
-        'Аналитика и оптимизация продаж': 'https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg',
-        'Файлы для риелторов': 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
-        'Командное лидерство': 'https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg',
-        'HR Аналитика': 'https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg',
-        'Отдел адаптации': 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
-        'Департамент управления': 'https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg',
-        'Отдел ипотеки': 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
-        'Юридический департамент': 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
-        'Департамент информации': 'https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg'
-      };
-      
-      // Устанавливаем соответствующую иконку
-      const iconElement = document.getElementById('analyticsIcon');
-      if (iconMap[title]) {
-        iconElement.src = iconMap[title];
-        iconElement.alt = title;
-        iconElement.style.display = 'block';
-      } else {
-        iconElement.style.display = 'none';
-      }
-    }
-
-    function showMain() {
-      document.getElementById('mainPage').style.display = 'flex';
-      document.getElementById('analyticsPage').style.display = 'none';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    // Инициализация
-    document.addEventListener('DOMContentLoaded', function() {
-      createParticles();
-      
-      // Добавляем обработчики для карточек
-      const cards = document.querySelectorAll('.modern-card');
-      cards.forEach((card, index) => {
-        // Клик по карточке
-        card.addEventListener('click', function(e) {
-          // Получаем заголовок из h3
-          const title = this.querySelector('h3').textContent;
-          showAnalytics(title);
-        });
-      });
-      
-      // Параллакс эффект для частиц при движении мыши (только для десктопа)
-      if (window.innerWidth > 768) {
-        document.addEventListener('mousemove', function(e) {
-          const particles = document.querySelectorAll('.particle');
-          const x = e.clientX / window.innerWidth;
-          const y = e.clientY / window.innerHeight;
-          
-          particles.forEach((particle, index) => {
-            const speed = (index % 3 + 1) * 0.5;
-            particle.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-          });
-        });
-      }
-      
-      // Пересоздание частиц при изменении размера экрана
-      window.addEventListener('resize', function() {
-        const container = document.getElementById('particles');
-        container.innerHTML = '';
-        createParticles();
-      });
-    });
-
-    // Добавляем интерактивность для analytics кнопок
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('analytics-button')) {
-        e.target.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          e.target.style.transform = '';
-        }, 200);
-      }
-    });
-  </script>
-</body>
-</html>
+      <div class
