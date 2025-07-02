@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -39,7 +39,7 @@ body, html {
   overflow-x: hidden;
 }
 
-/* НОВЫЕ УЛУЧШЕНИЯ */
+/* ОСНОВНЫЕ СТИЛИ ИЗ ОРИГИНАЛА */
 
 /* Плавная анимация загрузки страницы */
 @keyframes fadeInUp {
@@ -723,10 +723,156 @@ header h1 {
     }
   }
 }
+
+/* НОВЫЕ УЛУЧШЕНИЯ */
+
+/* Прелоадер */
+.loading-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(252, 64, 58, 0.1);
+  border-top-color: #FC403A;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 9999;
+  display: none;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Индикатор прогресса прокрутки */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, #FC403A, #ff6b66);
+  z-index: 101;
+  transition: width 0.2s ease;
+  box-shadow: 0 0 10px rgba(252, 64, 58, 0.5);
+}
+
+/* Секция избранное и недавние */
+.quick-access {
+  background: rgba(252, 64, 58, 0.03);
+  border-radius: 24px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(252, 64, 58, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-access-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #130909;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.quick-access-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+
+.quick-access-item {
+  background: white;
+  border: 1px solid rgba(252, 64, 58, 0.1);
+  border-radius: 16px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.quick-access-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(252, 64, 58, 0.15);
+  border-color: rgba(252, 64, 58, 0.3);
+}
+
+.quick-access-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.quick-access-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #130909;
+  line-height: 1.2;
+}
+
+/* Индикатор внешней ссылки */
+.modern-card[data-external="true"]::after {
+  content: '↗';
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Мобильные улучшения */
+@media (max-width: 768px) {
+  .quick-access {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quick-access-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+  
+  .quick-access-item {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .quick-access-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>
 </head>
 
 <body>
+  <!-- Прелоадер -->
+  <div class="loading-indicator" id="loadingIndicator"></div>
+  
+  <!-- Индикатор прогресса прокрутки -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
   <!-- Анимированные частицы фона -->
   <div class="bg-particles" id="particles"></div>
 
@@ -780,22 +926,38 @@ header h1 {
           </div>
         </div>
 
+        <!-- Секция быстрого доступа -->
+        <div id="quickAccessSection" style="display: none;">
+          <!-- Недавно использованные -->
+          <div class="quick-access" id="recentSection" style="display: none;">
+            <h3 class="quick-access-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FC403A">
+                <path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/>
+              </svg>
+              Недавние
+            </h3>
+            <div class="quick-access-grid" id="recentGrid">
+              <!-- Недавние элементы -->
+            </div>
+          </div>
+        </div>
+
         <!-- Сетка карточек -->
         <div class="cards-grid-container mb-8 md:mb-16">
-          <div class="modern-card">
+          <div class="modern-card" data-external="true" data-url="https://docs.google.com/spreadsheets/analytics">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg" alt="Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
             <h3>Аналитика продаж</h3>
-          
+            <p>Системный анализ и автоматизация процессов продаж</p>
           </div>
 
-          <div class="modern-card">
+          <div class="modern-card" data-url="https://drive.google.com/realtors">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg" alt="Файлы" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
-            <h3>Файлы для риелторов</h3>
-           
+            <h3>Файлы риелторов</h3>
+            <p>Инструменты и шаблоны для эффективной работы</p>
           </div>
 
           <div class="modern-card">
@@ -803,15 +965,15 @@ header h1 {
               <img src="https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg" alt="Лидерство" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
             <h3>Лидерство команд</h3>
-            
+            <p>Формирование команд и развитие талантов</p>
           </div>
 
-          <div class="modern-card">
+          <div class="modern-card" data-external="true" data-url="https://analytics.hr.com">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg" alt="HR Аналитика" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
             <h3>HR Аналитика</h3>
-           
+            <p>Метрики персонала и глубокая аналитика</p>
           </div>
 
           <div class="modern-card">
@@ -819,23 +981,23 @@ header h1 {
               <img src="https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg" alt="Адаптация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
             <h3>Отдел адаптации</h3>
-            
+            <p>Адаптация и интеграция новых сотрудников</p>
           </div>
 
           <div class="modern-card">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg" alt="Управление" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
-            <h3>Департамент управления</h3>
-            
+            <h3>Управление</h3>
+            <p>Организация и контроль всех процессов</p>
           </div>
 
-          <div class="modern-card">
+          <div class="modern-card" data-external="true" data-url="https://mortgage.calculator.ru">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg" alt="Ипотека" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
-            <h3>Департамент ипотеки</h3>
-        
+            <h3>Отдел ипотеки</h3>
+            <p>Решения по ипотеке и кредитованию</p>
           </div>
 
           <div class="modern-card">
@@ -843,15 +1005,15 @@ header h1 {
               <img src="https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg" alt="Юридический" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
             <h3>Юридический отдел</h3>
-         
+            <p>Правовое сопровождение и экспертиза</p>
           </div>
 
           <div class="modern-card">
             <div class="gradient-icon">
               <img src="https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg" alt="Информация" style="width: 56px; height: 56px; object-fit: cover; border-radius: 12px;">
             </div>
-            <h3>Депртамент Информации</h3>
-           
+            <h3>Информация</h3>
+            <p>Поддержка и управление корпоративными знаниями</p>
           </div>
         </div>
       </div>
@@ -908,6 +1070,9 @@ header h1 {
   </div>
 
   <script>
+    // Хранилище для недавних
+    let recentItems = [];
+
     // Создание анимированных частиц (улучшенная версия)
     function createParticles() {
       const container = document.getElementById('particles');
@@ -935,6 +1100,15 @@ header h1 {
       }
     }
 
+    // Функция показа прелоадера
+    function showLoader() {
+      document.getElementById('loadingIndicator').style.display = 'block';
+    }
+
+    function hideLoader() {
+      document.getElementById('loadingIndicator').style.display = 'none';
+    }
+
     // Функции навигации
     function showAnalytics(title) {
       const mainPage = document.getElementById('mainPage');
@@ -951,6 +1125,9 @@ header h1 {
         
         // Обновляем заголовок
         document.getElementById('analyticsTitleText').textContent = title;
+        
+        // Добавляем в недавние
+        addToRecent(title);
         
         // Словарь соответствий заголовков и иконок
         const iconMap = {
@@ -996,6 +1173,9 @@ header h1 {
         analyticsPage.classList.remove('show');
         mainPage.style.display = 'flex';
         
+        // Обновляем отображение недавних
+        updateQuickAccess();
+        
         // Плавное появление главной страницы
         setTimeout(() => {
           mainPage.style.opacity = '1';
@@ -1004,6 +1184,51 @@ header h1 {
         // Плавная прокрутка наверх
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 300);
+    }
+
+    // Функции для работы с недавними
+    function addToRecent(title) {
+      // Удаляем если уже есть
+      recentItems = recentItems.filter(item => item !== title);
+      // Добавляем в начало
+      recentItems.unshift(title);
+      // Ограничиваем количество
+      recentItems = recentItems.slice(0, 6);
+      updateQuickAccess();
+    }
+
+    // Обновление секции быстрого доступа
+    function updateQuickAccess() {
+      const quickAccessSection = document.getElementById('quickAccessSection');
+      const recentSection = document.getElementById('recentSection');
+      
+      // Показываем секцию если есть данные
+      if (recentItems.length > 0) {
+        quickAccessSection.style.display = 'block';
+        recentSection.style.display = 'block';
+        
+        const recentGrid = document.getElementById('recentGrid');
+        const iconMap = {
+          'Аналитика продаж': 'https://i.postimg.cc/k2Z7gqft/Whats-App-Image-2025-06-30-at-11-37-37.jpg',
+          'Файлы риелторов': 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
+          'Лидерство команд': 'https://i.postimg.cc/xXWqFvr7/Whats-App-Image-2025-06-30-at-11-50-13.jpg',
+          'HR Аналитика': 'https://i.postimg.cc/GBKwsRjQ/Whats-App-Image-2025-06-30-at-11-52-57.jpg',
+          'Отдел адаптации': 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
+          'Управление': 'https://i.postimg.cc/phKjB0pq/Whats-App-Image-2025-06-30-at-11-57-17.jpg',
+          'Отдел ипотеки': 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
+          'Юридический отдел': 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
+          'Информация': 'https://i.postimg.cc/mhBYZscD/Whats-App-Image-2025-06-30-at-12-06-17.jpg'
+        };
+        
+        recentGrid.innerHTML = recentItems.map(title => `
+          <div class="quick-access-item" onclick="showAnalytics('${title}')">
+            <img src="${iconMap[title]}" alt="${title}" class="quick-access-icon">
+            <span class="quick-access-text">${title}</span>
+          </div>
+        `).join('');
+      } else {
+        quickAccessSection.style.display = 'none';
+      }
     }
 
     // Расширенная база данных для поиска по всему сайту
@@ -1121,71 +1346,6 @@ header h1 {
         type: 'subsection',
         parent: 'Аналитика продаж',
         keywords: ['оптимизация', 'процессы', 'улучшение', 'бизнес', 'efficiency', 'автоматизация', 'ускорение']
-      },
-
-      // Элементы интерфейса
-      {
-        title: 'Поиск по инструментам',
-        description: 'Быстрый поиск нужных решений',
-        icon: '',
-        type: 'interface',
-        keywords: ['поиск', 'найти', 'искать', 'search', 'инструменты', 'решения', 'быстро', 'секунда']
-      },
-      {
-        title: 'Главная страница',
-        description: 'Основная страница с инструментами',
-        icon: 'https://i.postimg.cc/xTfKTV6w/image.png',
-        type: 'interface',
-        keywords: ['главная', 'главная страница', 'home', 'основная', 'начало', 'старт', 'menu', 'меню']
-      },
-      {
-        title: 'Логотип компании',
-        description: 'Переход на главную страницу',
-        icon: 'https://i.postimg.cc/xTfKTV6w/image.png',
-        type: 'interface',
-        keywords: ['логотип', 'logo', 'компания', 'бренд', 'этажи', 'агентство', 'недвижимость']
-      },
-
-      // Дополнительные материалы и контент
-      {
-        title: 'Презентации объектов',
-        description: 'Шаблоны для презентации недвижимости',
-        icon: 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
-        type: 'content',
-        parent: 'Файлы риелторов',
-        keywords: ['презентации', 'объекты', 'недвижимость', 'квартиры', 'дома', 'коммерческая', 'слайды', 'powerpoint']
-      },
-      {
-        title: 'Скрипты продаж',
-        description: 'Готовые скрипты для работы с клиентами',
-        icon: 'https://i.postimg.cc/28q4F0Y3/Whats-App-Image-2025-06-30-at-11-44-49.jpg',
-        type: 'content',
-        parent: 'Файлы риелторов',
-        keywords: ['скрипты', 'продажи', 'диалоги', 'клиенты', 'переговоры', 'возражения', 'холодные', 'звонки']
-      },
-      {
-        title: 'Договоры и документы',
-        description: 'Типовые договоры и правовые документы',
-        icon: 'https://i.postimg.cc/GHzsm8Wg/Whats-App-Image-2025-06-30-at-12-04-39.jpg',
-        type: 'content',
-        parent: 'Юридический отдел',
-        keywords: ['договоры', 'документы', 'бланки', 'формы', 'соглашения', 'контракты', 'правовые', 'юридические']
-      },
-      {
-        title: 'Калькуляторы ипотеки',
-        description: 'Инструменты расчета ипотечных платежей',
-        icon: 'https://i.postimg.cc/SYMDpLTP/Whats-App-Image-2025-06-30-at-12-02-42.jpg',
-        type: 'tool',
-        parent: 'Отдел ипотеки',
-        keywords: ['калькуляторы', 'ипотека', 'расчет', 'платежи', 'проценты', 'ставки', 'кредит', 'банк']
-      },
-      {
-        title: 'Обучающие материалы',
-        description: 'Курсы и материалы для развития сотрудников',
-        icon: 'https://i.postimg.cc/GTYXGJCC/Whats-App-Image-2025-06-30-at-11-55-21.jpg',
-        type: 'content',
-        parent: 'Отдел адаптации',
-        keywords: ['обучение', 'курсы', 'материалы', 'видео', 'уроки', 'тренинги', 'развитие', 'навыки', 'знания']
       }
     ];
 
@@ -1322,6 +1482,14 @@ header h1 {
       }
     }
 
+    // Обновление индикатора прогресса прокрутки
+    function updateScrollProgress() {
+      const scrolled = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrolled / height) * 100;
+      document.getElementById('scrollProgress').style.width = progress + '%';
+    }
+
     // Инициализация
     document.addEventListener('DOMContentLoaded', function() {
       createParticles();
@@ -1354,6 +1522,10 @@ header h1 {
       // Добавляем обработчики для карточек
       const cards = document.querySelectorAll('.modern-card');
       cards.forEach((card, index) => {
+        // Проверяем наличие внешней ссылки
+        const isExternal = card.getAttribute('data-external') === 'true';
+        const url = card.getAttribute('data-url');
+        
         // Клик по карточке
         card.addEventListener('click', function(e) {
           // Добавляем визуальную обратную связь
@@ -1364,9 +1536,19 @@ header h1 {
           
           // Получаем заголовок из h3
           const title = this.querySelector('h3').textContent;
-          setTimeout(() => {
-            showAnalytics(title);
-          }, 200);
+          
+          if (isExternal && url) {
+            showLoader();
+            setTimeout(() => {
+              window.open(url, '_blank');
+              hideLoader();
+              addToRecent(title);
+            }, 500);
+          } else {
+            setTimeout(() => {
+              showAnalytics(title);
+            }, 200);
+          }
         });
         
         // Добавляем легкий эффект при движении мыши (только для десктопа)
@@ -1447,6 +1629,19 @@ header h1 {
       cards.forEach(card => {
         observer.observe(card);
       });
+      
+      // Обработчик прокрутки
+      window.addEventListener('scroll', function() {
+        updateScrollProgress();
+        
+        // Параллакс для заголовка
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.animated-title');
+        if (parallax) {
+          const speed = scrolled * 0.2;
+          parallax.style.transform = `translateY(${speed}px)`;
+        }
+      });
     });
 
     // Добавляем интерактивность для analytics кнопок
@@ -1460,16 +1655,6 @@ header h1 {
         
         // Здесь можно добавить логику для открытия конкретных разделов
         console.log('Выбран раздел:', e.target.textContent);
-      }
-    });
-
-    // Улучшенная прокрутка с эффектом параллакса для заголовка
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      const parallax = document.querySelector('.animated-title');
-      if (parallax) {
-        const speed = scrolled * 0.2;
-        parallax.style.transform = `translateY(${speed}px)`;
       }
     });
   </script>
